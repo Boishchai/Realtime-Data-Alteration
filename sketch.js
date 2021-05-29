@@ -21,12 +21,13 @@ function setup() {
   balloon.scale=0.5;
 
   textSize(20); 
+  database = firebase.database();
+  var balloonPosition = database.ref("balloon/height");
+  balloonPosition.on("value", readHeight, showError);
 }
 
 // function to display UI
-database = firebase.database();
-var balloonPosition = database.ref("balloon/height");
-balloonPosition.on("value", readHeight, showError);
+
 
 function draw() {
   background(bg);
